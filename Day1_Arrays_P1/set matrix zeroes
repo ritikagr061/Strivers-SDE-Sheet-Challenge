@@ -1,0 +1,33 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        Set<Integer> rows=new HashSet<>();
+        Set<Integer> cols=new HashSet<>();
+
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]==0){
+                    rows.add(i);
+                    cols.add(j);
+                }
+            }
+        }
+
+        if(!rows.isEmpty()){
+            for(Integer ele:rows){
+                for(int i=0;i<matrix[0].length;i++){
+                    matrix[ele][i]=0;
+                }
+            }
+        }
+
+        if(!cols.isEmpty()){
+            for(Integer ele:cols){
+                for(int i=0;i<matrix.length;i++){
+                    matrix[i][ele]=0;
+                }
+            }
+        }
+
+        
+    }
+}
