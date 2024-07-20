@@ -1,0 +1,44 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n=nums.length;
+        if(n<2){
+            return;
+        }
+        int unsorted_idx_from_last=-1;
+        for(int i=n-2;i>=0;i--){
+            if(nums[i]<nums[i+1]){
+                unsorted_idx_from_last=i;
+                break;
+            }
+        }
+
+        if(unsorted_idx_from_last==-1){
+            for(int i=0;i<n/2;i++){
+                int temp=nums[i];
+                nums[i]=nums[n-1-i];
+                nums[n-1-i]=temp;
+            }
+            return;
+        }
+
+        //finding next greater element to the 'unsorted_idx_from_last' element.
+        for(int i=n-1;i>unsorted_idx_from_last;i--){
+            if(nums[i]>nums[unsorted_idx_from_last]){
+                int temp=nums[unsorted_idx_from_last];
+                nums[unsorted_idx_from_last]=nums[i];
+                nums[i]=temp;
+                break;
+            }
+        }
+
+        int totalElements=n-1-unsorted_idx_from_last;
+
+        for(int i=0;i<totalElements/2;i++){
+            int temp=nums[unsorted_idx_from_last+1+i];
+            nums[unsorted_idx_from_last+1+i]=nums[n-1-i];
+            nums[n-1-i]=temp;
+        }
+
+        return;
+    }
+}
